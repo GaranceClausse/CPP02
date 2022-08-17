@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include <iostream>>
+#include <iostream>
 
 class Fixed
 {
@@ -23,13 +23,8 @@ private:
 public:
 	Fixed();
 	Fixed(const Fixed& copy);
+	Fixed &operator=(const Fixed &b);
 	~Fixed();
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 };
-
-Fixed::Fixed(/* args */)
-{
-}
-
-Fixed::~Fixed()
-{
-}
