@@ -28,7 +28,7 @@ Fixed::Fixed(const int num)
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float Constructor called" << std::endl;
-	this->_value = roundf(num * (1 << this->_fract_bits));
+	this->_value = (int)roundf(num * (1 << this->_fract_bits));
 }
 
 Fixed::Fixed(const Fixed& copy)
@@ -50,17 +50,17 @@ Fixed &Fixed::operator=(const Fixed &b)
 	return *this;
 }
 
-float	Fixed::toFloat(void)const
+float	Fixed::toFloat(void) const
 {
 	return ((float)this->_value / (float)(1 << this->_fract_bits));
 }
 
-int	Fixed::toInt(void)const
+int	Fixed::toInt(void) const
 {
-	return (this->_value >> this->_fract_bits);
+	return (int)(this->_value >> this->_fract_bits);
 }
 
-int	Fixed::getRawBits(void)const
+int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);

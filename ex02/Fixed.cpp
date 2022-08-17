@@ -16,35 +16,35 @@ const int Fixed::_fract_bits = 8;
 
 Fixed::Fixed(): _value(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	//std::cout << "Default Constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int num)
 {
-	std::cout << "Int Constructor called" << std::endl;
+	//std::cout << "Int Constructor called" << std::endl;
 	this->_value = num << this->_fract_bits;
 }
 
 Fixed::Fixed(const float num)
 {
-	std::cout << "Float Constructor called" << std::endl;
+	//std::cout << "Float Constructor called" << std::endl;
 	this->_value = roundf(num * (1 << this->_fract_bits));
 }
 
 Fixed::Fixed(const Fixed& copy)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	//std::cout << "Copy Constructor called" << std::endl;
 	*this = copy;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &b)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	//std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &b)
 		this->_value = b.getRawBits();
 	return *this;
@@ -53,34 +53,28 @@ Fixed &Fixed::operator=(const Fixed &b)
 /************************************************************************/
 //Opérateurs de comparaison
 
-bool	Fixed::operator>(Fixed fixed) const
-{
-	return (this->toFloat() > fixed.toFloat());
+bool	Fixed::operator>(Fixed const &fixed) const {
+	return getRawBits() > fixed.getRawBits();
 }
 
-bool	Fixed::operator<(Fixed fixed) const
-{
-	return (this->toFloat() < fixed.toFloat());
+bool	Fixed::operator<(Fixed const &fixed) const {
+	return getRawBits() < fixed.getRawBits();
 }
 
-bool	Fixed::operator>=(Fixed fixed) const
-{
-	return (this->toFloat() >= fixed.toFloat());
+bool	Fixed::operator>=(Fixed const &fixed) const {
+	return getRawBits() >= fixed.getRawBits();
 }
 
-bool	Fixed::operator<=(Fixed fixed) const
-{
-	return (this->toFloat() <= fixed.toFloat());
+bool	Fixed::operator<=(Fixed const &fixed) const {
+	return getRawBits() <= fixed.getRawBits();
 }
 
-bool	Fixed::operator==(Fixed fixed) const
-{
-	return (this->toFloat() == fixed.toFloat());
+bool	Fixed::operator==(Fixed const &fixed) const {
+	return getRawBits() == fixed.getRawBits();
 }
 
-bool	Fixed::operator!=(Fixed fixed) const
-{
-	return (this->toFloat() != fixed.toFloat());
+bool	Fixed::operator!=(Fixed const &fixed) const {
+	return getRawBits() != fixed.getRawBits();
 }
 
 /************************************************************************/
@@ -153,10 +147,7 @@ int	Fixed::toInt(void)const
 
 Fixed	&Fixed::min(Fixed &num1, Fixed &num2)
 {
-	if (num1.toFloat() <= num2.toFloat())
-		return (num1);
-	else
-		return (num2);
+	return (num1 < num2 ? num1 : num2);
 }
 
 const Fixed	&Fixed::min(const Fixed &num1, const Fixed &num2)
@@ -169,10 +160,7 @@ const Fixed	&Fixed::min(const Fixed &num1, const Fixed &num2)
 
 Fixed	&Fixed::max(Fixed &num1, Fixed &num2)
 {
-	if (num1.toFloat() >= num2.toFloat())
-		return (num1);
-	else
-		return (num2);
+	return (num1 > num2 ? num1 : num2);
 }
 
 const Fixed	&Fixed::max(const Fixed &num1, const Fixed &num2)
@@ -188,13 +176,13 @@ const Fixed	&Fixed::max(const Fixed &num1, const Fixed &num2)
 
 int	Fixed::getRawBits(void)const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
+	//std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
 }
 

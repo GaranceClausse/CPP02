@@ -30,12 +30,12 @@ public:
 
 	Fixed &operator=(const Fixed &b);
 
-	bool operator>(Fixed fixed)const;
-	bool operator<(Fixed fixed)const;
-	bool operator>=(Fixed fixed)const;
-	bool operator<=(Fixed fixed)const;
-	bool operator==(Fixed fixed)const;
-	bool operator!=(Fixed fixed)const;
+	bool	operator>(Fixed const &fixed) const;
+	bool	operator<(Fixed const &fixed) const;
+	bool	operator>=(Fixed const &fixed) const;
+	bool	operator<=(Fixed const &fixed) const;
+	bool	operator==(Fixed const &fixed) const;
+	bool	operator!=(Fixed const &fixed) const;
 
 	float operator+(Fixed fixed)const;
 	float operator-(Fixed fixed)const;
